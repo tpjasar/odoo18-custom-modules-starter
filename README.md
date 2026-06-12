@@ -1,16 +1,10 @@
 # Odoo 18 Custom Modules Starter
 
-Docker + Odoo 18 Community + a ready `addons/` layout for custom modules.
+Odoo 18 Community starter with Docker, PostgreSQL, and a custom `addons/` folder structure.
 
-I built this while learning Odoo 18. Every new project meant setting up Docker again and figuring out where to put models, views, and security files. This repo is the structure I settled on - clone it and start customizing.
+Clone this whenever you start a new Odoo project. No local install - just `docker compose up -d` and add your modules.
 
-## Who is this for?
-
-- Odoo devs starting custom modules
-- Freelancers kicking off a new client project
-- Small teams that want everyone using the same folder layout
-
-## What's in the repo
+## What's included
 
 - Docker setup (Odoo 18, PostgreSQL, Adminer)
 - `base_custom` - shared security groups
