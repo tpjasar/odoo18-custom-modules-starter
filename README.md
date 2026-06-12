@@ -85,14 +85,6 @@ Or in Odoo: Apps → your module → **Upgrade**
 - Docker and Docker Compose
 - **CRM** app installed (for `example_custom`)
 
-## Screenshot
-
-After installing Example Custom, you should see a **Brief** field on the CRM lead form. Add your own screenshot here once you have one:
-
-```markdown
-![Brief field on CRM lead](docs/screenshot.png)
-```
-
 ## Security
 
 Default master password in `config/odoo.conf` is `changeme`. Change it before any real deployment.
