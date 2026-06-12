@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16
+    container_name: odoo18-starter-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_USER: ${POSTGRES_USER:-odoo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-odoo}
+    volumes:
+      - odoo18-starter-db-data:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    networks:
+      - odoo18-starter-net
+
+  odoo:
+    image: odoo:18.0
+    container_name: odoo18-starter-app
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "${ODOO_PORT:-8069}:8069"
+    environment:
+      HOST: db
+      USER: ${POSTGRES_USER:-odoo}
+      PASSWORD: ${POSTGRES_PASSWORD:-odoo}
+    volumes:
+      - odoo18-starter-web-data:/var/lib/odoo
+      - ./addons:/mnt/extra-addons
+      - ./config/odoo.conf:/etc/odoo/odoo.conf:ro
+    networks:
+      - odoo18-starter-net
+
+  adminer:
+    image: adminer:latest
+    container_name: odoo18-starter-adminer
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "${ADMINER_PORT:-8080}:8080"
+    networks:
+      - odoo18-starter-net
+
+volumes:
+  odoo18-starter-db-data:
+  odoo18-starter-web-data:
+
+networks:
+  odoo18-starter-net:
+    driver: bridge
